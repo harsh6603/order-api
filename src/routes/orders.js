@@ -1,10 +1,14 @@
 const express = require('express');
 const orderService = require('../services/orderService');
+const { parseListQuery, queryOrders } = require('../services/orderQuery');
 
 const router = express.Router();
 
+// GET /orders?status=PENDING&customerId=C-1&sortBy=total&order=asc&page=2&limit=10
 router.get('/', (req, res) => {
-  res.json(orderService.listOrders());
+  const { errors, options } = parseListQuery(req.query);
+  if (errors) return res.status(400).json({ error: 'Invalid query', details: errors });
+  res.json(queryOrders(orderService.listOrders(), options));
 });
 
 router.get('/:id', (req, res) => {
