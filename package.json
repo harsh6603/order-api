@@ -1,0 +1,18 @@
+{
+  "name": "order-api",
+  "version": "1.0.0",
+  "description": "A small order management REST API (Express) used to exercise automated code review.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}
