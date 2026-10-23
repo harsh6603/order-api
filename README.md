@@ -21,3 +21,14 @@ npm install
 npm start      # http://localhost:3000
 npm test
 ```
+
+## Authentication
+
+All endpoints except `/health` require an `x-api-key` header. Configure valid keys with a comma-separated env var:
+
+```bash
+API_KEYS=key-one,key-two npm start
+curl -H "x-api-key: key-one" http://localhost:3000/orders
+```
+
+Every response carries an `x-request-id` header (an incoming one is reused if it is safe), and error bodies include `requestId` for log correlation.
